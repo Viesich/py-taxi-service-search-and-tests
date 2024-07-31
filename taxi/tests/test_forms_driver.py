@@ -56,7 +56,9 @@ class ValidateLicenseNumberTests(TestCase):
         try:
             validate_license_number("ABC12345")
         except ValidationError:
-            self.fail("validate_license_number raised ValidationError unexpectedly!")
+            self.fail(
+                "validate_license_number raised ValidationError unexpectedly!"
+            )
 
     def test_invalid_length(self):
         with self.assertRaises(ValidationError) as context:
@@ -78,10 +80,16 @@ class ValidateLicenseNumberTests(TestCase):
         with self.assertRaises(ValidationError) as context:
             validate_license_number("ABC12ABC")
         exception = context.exception
-        self.assertEqual(exception.message, "Last 5 characters should be digits")
+        self.assertEqual(
+            exception.message,
+            "Last 5 characters should be digits"
+        )
 
     def test_invalid_characters(self):
         with self.assertRaises(ValidationError) as context:
             validate_license_number("ABC12AB!")
         exception = context.exception
-        self.assertEqual(exception.message, "Last 5 characters should be digits")
+        self.assertEqual(
+            exception.message,
+            "Last 5 characters should be digits"
+        )

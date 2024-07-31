@@ -52,7 +52,10 @@ class CarFormsTests(TestCase):
 
     def test_search_form_field_placeholder(self):
         form = CarSearchForm()
-        self.assertEqual(form.fields["model"].widget.attrs["placeholder"], "model")
+        self.assertEqual(
+            form.fields["model"].widget.attrs["placeholder"],
+            "model"
+        )
 
     def test_search_form_model_field_max_length(self):
         form = CarSearchForm(data={"model": "a" * 256})
